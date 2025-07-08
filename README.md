@@ -1,27 +1,57 @@
-# Frontend
+🚗 # Car Rental Management System – Full-Stack Web Application (Angular + .NET Core)
+I developed a fully-featured Car Rental Web Application using Angular (frontend) and .NET Core Web API (backend) to manage the complete rental process for users and administrators. This project mimics real-world rental service platforms with clean UI, robust backend, and secure user management.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.16.
+🔍 Project Overview:
+The application enables end-to-end functionality for car rental services, designed to serve both customers and admin users with tailored interfaces and role-based access.
 
-## Development server
+👨‍💻 User Functionality:
+User Registration & Authentication: Secure sign-up and login using JWT tokens.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Search & Filter Vehicles: Browse and filter available cars by brand, type, location, price, and date.
 
-## Code scaffolding
+Live Availability Check: Only cars available in the selected date range are shown.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Booking System: Users can book a car by choosing pickup and drop-off dates.
 
-## Build
+Booking Management: View, manage, and cancel existing bookings.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Responsive UI: Fully mobile-friendly with a modern design using Angular Material.
 
-## Running unit tests
+🛠️ Admin Functionality:
+Admin Login Portal: Secure backend access with role-based permissions.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Car Fleet Management: Add, update, or delete car listings (including images and specs).
 
-## Running end-to-end tests
+Booking Overview: View and manage all active, past, or cancelled bookings.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+User Monitoring: See active users and their booking history.
 
-## Further help
+Dashboard View: Visual overview of fleet status, revenue metrics, and booking trends.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+🧪 Tech Stack:
+Frontend: Angular 14+, Angular Material, Bootstrap
+
+Backend: ASP.NET Core Web API (.NET 6)
+
+Database: Microsoft SQL Server with Entity Framework Core
+
+Authentication: JWT Token-based secure login system
+
+API Layer: RESTful services for all CRUD operations
+
+Architecture: Layered solution with proper separation of concerns (Controllers, Services, Repositories)
+
+Testing: Postman for API testing and unit test-ready services
+
+Deployment: Ready for cloud hosting (Azure, AWS, or on-prem)
+
+📦 Features in Progress / Future Enhancements:
+Email notifications on booking and cancellation
+
+Online payment gateway integration (Razorpay/Stripe)
+
+Role-based access with permission groups
+
+Real-time availability calendar
+
+Customer support ticketing module
