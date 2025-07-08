@@ -1,0 +1,66 @@
+<!-- Success & Error Messages -->
+<div *ngIf="successMessage" class="alert alert-success text-center mt-3">
+  <i class="bi bi-check-circle"></i> {{ successMessage }}
+</div>
+
+<div *ngIf="errorMessage" class="alert alert-danger text-center mt-3">
+  <i class="bi bi-exclamation-circle"></i> {{ errorMessage }}
+</div>
+
+<div class="login-container">
+    <div class="card">
+      <div class="card-body">
+        <h3 class="text-center mb-4 fw-bold">Login to GlideDrive</h3>
+  
+        <form (ngSubmit)="onLogin()">
+          <!-- Username -->
+          <div class="mb-3">
+            <label for="username" class="form-label fw-bold">Username</label>
+            <div class="input-group">
+              <span class="input-group-text"><i class="bi bi-person"></i></span>
+              <input
+                type="text"
+                id="username"
+                class="form-control"
+                [(ngModel)]="loginData.username"
+                name="username"
+                placeholder="Username"
+                required
+              />
+            </div>
+          </div>
+  
+          <!-- Password -->
+          <div class="mb-3">
+            <label for="password" class="form-label fw-bold">Password</label>
+            <div class="input-group">
+              <span class="input-group-text"><i class="bi bi-lock"></i></span>
+              <input
+                type="password"
+                id="password"
+                class="form-control"
+                [(ngModel)]="loginData.password"
+                name="password"
+                placeholder="Password"
+                required
+              />
+            </div>
+          </div>
+  
+          <!-- Login Button -->
+          <div class="d-grid">
+            <button type="submit" class="btn btn-primary fw-bold"><i class="bi bi-box-arrow-in-right"></i> Login</button>
+          </div>
+
+          <div class="text-center mt-3">
+            <a href="#" (click)="toggleForgotPassword()" class="fw-bold">Forgot Password?</a>
+          </div>
+        </form>
+  
+        <!-- Register Link -->
+        <div class="text-center mt-3">
+          <p>Don't have an account? <a routerLink="/register" class="fw-bold">Register here</a></p>
+        </div>
+      </div>
+    </div>
+  </div>

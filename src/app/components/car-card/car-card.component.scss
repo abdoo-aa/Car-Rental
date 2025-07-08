@@ -1,0 +1,247 @@
+/* Main Card Styling */
+.car-card {
+    border-radius: 15px;
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+    background: #fff;
+    border: none;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+    &:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+}
+.car-details {
+    margin-bottom: 15px;
+
+    .car-color {
+        color: #ddd;
+        font-size: 0.95rem;
+    }
+
+    // Discounted Price Styling
+    .car-price-discounted {
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: #28a745; // Green color to highlight discount
+        margin-right: 8px;
+    }
+
+    // Original Price with Strikethrough
+    .car-price-original {
+        font-size: 1rem;
+        color: #f34c5d; // Red to indicate original higher price
+        text-decoration: line-through;
+    }
+}
+
+
+/* Image Styling */
+.image-container {
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+    position: relative;
+
+    .car-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease-in-out;
+
+        .car-card:hover & {
+            transform: scale(1.07);
+        }
+    }
+
+    /* Gradient Overlay */
+    .image-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+
+        .car-card:hover & {
+            opacity: 1;
+        }
+    }
+    .para-overlay {
+        position: absolute;
+        top: 190px;
+        left: 10px;
+        width: 100%;
+        height: 100%;
+        
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+
+        .car-card:hover & {
+            opacity: 1;
+            color: rgb(250, 246, 246);
+        }
+    }
+    .para1-overlay {
+        position: absolute;
+        top: 166px;
+        left: 10px;
+        width: 100%;
+        height: 100%;
+        
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+
+        .car-card:hover & {
+            opacity: 1;
+            color: rgb(250, 246, 246);
+        }
+    }
+    .para2-overlay {
+        position: absolute;
+        top: 146px;
+        left: 10px;
+        width: 100%;
+        height: 100%;
+        
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+
+        .car-card:hover & {
+            opacity: 1;
+            color: rgb(250, 246, 246);
+        }
+    }
+
+    /* Out-of-Stock Badge */
+    .out-of-stock-badge {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        background: #dc3545;
+        color: #fff;
+        font-size: 14px;
+        font-weight: bold;
+        border-radius: 8px;
+        padding: 5px 10px;
+    }
+    .discount-badge {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: #056ff0;
+        color: #fff;
+        font-size: 14px;
+        font-weight: bold;
+        border-radius: 8px;
+        padding: 5px 10px;
+    }
+    .highdrop-badge {
+        position: absolute;
+        top: 79px;
+        right: 10px;
+        background: #fc8701;
+        color: #fff;
+        font-size: 14px;
+        font-weight: bold;
+        border-radius: 8px;
+        padding: 5px 10px;
+    }
+    .rating-badge {
+        position: absolute;
+        top: 47px;
+        right: 10px;
+        background: #f9f000;
+        color: #fff;
+        font-size: 14px;
+        font-weight: bold;
+        border-radius: 8px;
+        padding: 5px 10px;
+    }
+    .ratinghigh-badge {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: #f9f000;
+        color: #fff;
+        font-size: 14px;
+        font-weight: bold;
+        border-radius: 8px;
+        padding: 5px 10px;
+    }
+    .new-badge {
+        position: absolute;
+        top: 10px;
+        right: 100px;
+        background: #f4377c;
+        color: #f8f4f6;
+        font-size: 14px;
+        font-weight: bold;
+        border-radius: 8px;
+        padding: 5px 10px;
+    }
+}
+
+/* Text Styling */
+.card-body {
+    padding: 15px;
+
+    .car-title {
+        font-weight: bold;
+        font-size: 1.4rem;
+        margin-bottom: 10px;
+    }
+
+    .car-details {
+        margin-bottom: 15px;
+
+        .car-color {
+            color: #ddd;
+            font-size: 0.95rem;
+        }
+
+        .car-price {
+            font-size: 1rem;
+            padding: 5px 10px;
+            border-radius: 8px;
+        }
+    }
+}
+
+/* Button Styling */
+.btn-primary-gradient {
+    width: 100%;
+    font-weight: bold;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(to right, #007bff, #0056b3);
+    color: #fff;
+    transition: background 0.3s ease-in-out;
+
+    &:hover {
+        background: linear-gradient(to right, #0056b3, #007bff);
+    }
+}
+
+.btn-secondary{
+    width: 100%;
+    font-weight: bold;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    background: #6c757d;
+    color: #fff;
+    opacity: 0.7;
+}
+.badge-secondary {
+    background-color: #6c757d !important; // Grey color
+    color: #fff !important;
+  }
+  

@@ -1,0 +1,101 @@
+<!-- Delete Confirmation Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteModalLabel">Confirm Deletion</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to delete this car?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+        <button type="button" class="btn btn-danger" (click)="confirmDelete()" data-bs-dismiss="modal">Yes, Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container mt-4">
+    <h2 class="text-primary fw-bold"><i class="bi bi-gear"></i> Manage Cars</h2>
+    <div class="row">
+      <div class="col-md-4 mb-3">
+        <div class="card summary-card bg-info-subtle">
+          <div class="card-body">
+            <h5>Total Cars</h5>
+            <h3>{{ displayCount }}</h3>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-3">
+        <div class="card summary-card">
+          <div class="card-body">
+            <h5>Avaliable Cars</h5>
+            <h3>{{ displayCountAval }}</h3>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-3" >
+        <div class="card summary-card">
+          <div class="card-body">
+            <h5>Not Avaliable Cars</h5>
+            <h3>{{ displayCount - displayCountAval }}</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Add Car Button -->
+    <div class="d-flex justify-content-end mb-3">
+      <button class="btn btn-primary" routerLink="/car-form">
+        <i class="bi bi-plus-circle"></i> Add New Vehicle
+      </button>
+    </div>
+  
+    <!-- Responsive Table -->
+    <div class="table-responsive">
+      <table class="table table-bordered table-striped text-center align-middle">
+        <thead class="table-dark">
+          <tr>
+            <th>Image</th>
+            <th>Make</th>
+            <th>Model</th>
+            <th>Year</th>
+            <th>Color</th>
+            <th>Price (₹/day)</th>
+            <th>Availability</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let car of cars | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage }">
+            <td>
+              <img [src]="car.picture" alt="Car Image" class="car-img">
+            </td>
+            <td>{{ car.make }}</td>
+            <td>{{ car.model }}</td>
+            <td>{{ car.year }}</td>
+            <td>{{ car.color }}</td>
+            <td>₹{{ car.rentalPricePerDay }}</td>
+            <td>
+              <span [ngClass]="{'text-success': car.isAvailable, 'text-danger': !car.isAvailable}">
+                {{ car.isAvailable ? 'Available' : 'Not Available' }}
+              </span>
+            </td>
+            <td >
+              <button *ngIf="car.isAvailable" class="btn btn-warning btn-sm m-1" [routerLink]="['/car-form', car.id]">
+                <i class="bi bi-pencil-square"></i> Edit
+              </button>
+              <button *ngIf="car.isAvailable" class="btn btn-danger btn-sm m-1" (click)="openDeleteModal(car.id)">
+                <i class="bi bi-trash"></i> Delete
+              </button>
+              <p *ngIf="!car.isAvailable" class="text-danger-emphasis fw-bolder">No Action Can be Perform!! Due to Unavailability</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+     <!-- Pagination Controls -->
+     <pagination-controls (pageChange)="currentPage = $event"></pagination-controls>
+  </div>
+  

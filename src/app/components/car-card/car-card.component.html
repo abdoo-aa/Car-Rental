@@ -1,0 +1,46 @@
+<div class="card car-card shadow-lg">
+  <div class="image-container position-relative">
+    
+    <img *ngIf="car.picture" [src]="car.picture" class="car-image" alt="Car Image">
+    <span *ngIf="!car.isAvailable" class="badge badge-danger out-of-stock-badge">Out of Stock</span>
+    <div class="image-overlay"></div>
+    <span *ngIf="car.carDetails.discountPercentage > 0" class="badge badge-success discount-badge"><i class="bi bi-tag">{{car.carDetails.discountPercentage}}% Off</i></span>
+    <span *ngIf="car.carDetails.discountPercentage >= 25" class="badge badge-success highdrop-badge"><i class="bi bi-graph-down-arrow"></i> Price Drop</span>
+    <div class="image-overlay"></div>
+    <span *ngIf="car.carDetails.discountPercentage > 0 && rating === null" class="badge badge-warning rating-badge">0 <i class="bi bi-star-fill"></i></span>
+    <div class="image-overlay"></div>
+    <span *ngIf="car.carDetails.discountPercentage > 0" [ngClass]="rating === 0 ? 'badge badge-secondary rating-badge' : 'badge badge-warning rating-badge'">{{rating ? rating : '-' }} <i class="bi bi-star-fill"></i></span>
+    <div class="image-overlay"></div>
+    <span *ngIf="car.carDetails.discountPercentage <= 0" [ngClass]="rating === 0 ? 'badge badge-secondary rating-badge' : 'badge badge-warning rating-badge'">{{rating ? rating : '-' }} <i class="bi bi-star-fill"></i></span>
+    <div class="image-overlay"></div>
+    <span *ngIf="car.carDetails.category === 'Luxury Bike' || car.carDetails.category === 'Cruiser Bike'" class="badge badge-warning new-badge"><i class="bi bi-bell-fill"></i> New</span>
+    <div class="image-overlay"></div>
+    <div class="para2-overlay"><i class="bi bi-gear"></i>: {{car.carDetails.transmission}}</div>
+    <div class="para1-overlay"><i class="bi bi-clipboard-data"></i>: {{car.carDetails.mileage}} km/l</div>
+    <div class="para-overlay"><i class="bi bi-fuel-pump"></i>: {{car.carDetails.fuelType}}</div>
+  </div>
+
+  <div class="card-body text-center bg-dark text-white">
+    <h3 class="car-title">{{ car.make }} {{ car.model }}</h3>
+    <p class="car-details">
+      <span *ngIf="car.carDetails" class="car-color">Category: {{ car.carDetails.category }}</span> <br />
+
+       <!-- Display Discounted Price if Available -->
+       <ng-container *ngIf="car.carDetails.discountPercentage && car.carDetails.discountPercentage > 0; else noDiscount">
+        <span class="car-price-discounted">₹{{ getDiscountedPrice(car.rentalPricePerDay, car.carDetails.discountPercentage) }}/day</span>
+        <span class="car-price-original">₹{{ car.rentalPricePerDay }}/day</span>
+      </ng-container>
+
+      <!-- Display Normal Price if No Discount -->
+      <ng-template #noDiscount>
+        <span class="car-price badge bg-warning text-dark">₹{{ car.rentalPricePerDay }}/day</span>
+      </ng-template>
+    </p>
+
+    <button [routerLink]="['/car', car.id]" (click)="scrollToTop()" 
+      [ngClass]="car.isAvailable ? 'btn-primary-gradient' : 'btn-secondary'">
+      <i class="bi" [ngClass]="car.isAvailable ? 'bi-cart-check' : 'bi-eye'"></i> 
+      {{ car.isAvailable ? 'Book Now' : 'View' }}
+    </button>
+  </div>
+</div>

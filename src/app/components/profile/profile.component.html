@@ -1,0 +1,20 @@
+<div class="profile-container">
+  
+  <!-- Profile Header -->
+  <div class="profile-header">
+    <i class="bi bi-person-circle user-icon"></i>
+    <h1>My Profile</h1>
+  </div>
+
+  <!-- Profile Info Card -->
+  <div *ngIf="user" class="profile-info">
+    <h2>User Details</h2>
+    <p><strong>Username:</strong> {{ user.username }}</p>
+    <p><strong>Email:</strong> {{ alldata.email }}</p>
+    <p><strong>Role:</strong> {{ user.role }}</p>
+    <p><strong>Registered On:</strong> {{ alldata.createdAt | date: 'dd/MM/yyyy' }}</p>
+  </div>
+
+  <!-- Logout Button -->
+  <button class="logout-btn" (click)="logout()">Logout</button>
+</div>

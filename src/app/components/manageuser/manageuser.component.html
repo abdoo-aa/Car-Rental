@@ -1,0 +1,67 @@
+<div class="container mt-4">
+    <h2 class="fw-bold text-primary"><i class="bi bi-people"></i> User Management</h2>
+  
+    <!-- User Count -->
+    <div class="row">
+      <div class="col-md-4 mb-3">
+        <div class="card summary-card bg-info-subtle">
+          <div class="card-body">
+            <h5>Total Registered Users</h5>
+            <h3>{{ userCount-1 }}</h3>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-3">
+        <div class="card summary-card">
+          <div class="card-body">
+            <h5>Unblocked Users</h5>
+            <h3>{{ userUnlbockCount-1 }}</h3>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-3" >
+        <div class="card summary-card">
+          <div class="card-body">
+            <h5>Blocked Users</h5>
+            <h3>{{ userCount - userUnlbockCount }}</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Users Table -->
+    <div class="table-responsive mt-3 mb-5 text-center">
+      <table class="table table-bordered table-striped align-middle">
+        <thead class="table-dark">
+          <tr>
+            <th>ID</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Date Created</th>
+            <th>Report Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage }">
+            <td *ngIf="user.role === 'Admin'" class="fw-bold"><i class="bi bi-star-fill text-warning"></i>{{user.id}}</td>
+            <td *ngIf="user.role !== 'Admin'">{{ user.id }}</td>
+            <td >{{ user.username }}</td>
+            <td>{{user.email}}</td>
+            <td>{{ user.role }}</td>
+            <td>{{ user.dateCreated | date: 'dd/MM/yyyy HH:mm:ss' }}</td>
+            <td *ngIf="user.role === 'Admin'">
+              <p class="badge bg-danger-subtle text-danger-emphasis fs-6">Restricted</p>
+            </td>
+            <td *ngIf="user.role !== 'Admin'">
+              <button *ngIf="user.report === true" class="btn btn-danger btn-sm" (click)="block(user.id)"><i class="bi bi-ban"></i> Blocked</button>
+              <button *ngIf="user.report === false" class="btn btn-success btn-sm" (click)="block(user.id)"><i class="bi bi-unlock"></i> Unblock</button>
+            </td>
+            
+          </tr>
+        </tbody>
+      </table>
+    </div>
+     <!-- Pagination Controls -->
+    <pagination-controls (pageChange)="currentPage = $event"></pagination-controls>
+  </div>

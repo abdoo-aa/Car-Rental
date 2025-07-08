@@ -1,0 +1,67 @@
+<div class="container mt-4">
+  <div class="row align-items-center">
+    <!-- Left Section - Car Image Slider & Description -->
+    <div class="col-md-6 d-flex flex-column justify-content-center">
+      <div id="carImageCarousel" class="carousel slide rounded shadow-sm" data-bs-ride="carousel">
+        <div class="carousel-inner rounded">
+          <div *ngFor="let img of car.pictures; let first = first" class="carousel-item" [ngClass]="{'active': first}">
+            <img [src]="img" alt="Car Image" class="d-block w-100 img-fluid rounded">
+          </div>
+        </div>
+        <!-- Carousel Controls -->
+        <button class="carousel-control-prev btn btn-dark" type="button" data-bs-target="#carImageCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next btn btn-dark" type="button" data-bs-target="#carImageCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+
+      <p class="mt-3 text-muted text-center">
+        Experience the thrill of driving our premium cars. Well-maintained, fuel-efficient, and affordable!
+      </p>
+      <div class="text-center">
+        <button class="btn btn-danger mb-4" routerLink="/cars"><i class="bi bi-arrow-left"></i> Back</button>
+      </div>
+    </div>
+
+    <!-- Right Section - Car Details & Booking -->
+    <div class="col-md-6 d-flex flex-column justify-content-center">
+      <div class="card car-detail-card shadow-sm rounded">
+        <div class="card-body">
+          <h1 class="card-title fw-bold">{{ car?.model }}</h1>
+          <h3 class="card-title fw-bold"><strong>Model: </strong>{{ car?.make }}</h3>
+          <h4 class="card-text fw-bold"><strong>Category:</strong> {{ car?.carDetails.category }}</h4>
+          <p class="card-text fs-5"><strong>Year:</strong> {{ car?.year }}</p>
+          <p class="card-text"><strong>Color:</strong> {{ car?.color }}</p>
+          <p class="card-text"><strong>Mileage:</strong> {{ car?.carDetails?.mileage }} km/l</p>
+          <p class="card-text"><strong>Transmission:</strong> {{ car?.carDetails?.transmission }}</p>
+          <p class="card-text"><strong>Fuel Type:</strong> {{ car?.carDetails?.fuelType }}</p>
+          <p class="card-text"><strong>Seating Capacity:</strong> {{ car?.carDetails?.seatingCapacity }}</p>
+          <p class="card-text"><strong>Base Price per day:</strong> ₹{{ car?.rentalPricePerDay }}</p>
+          <p *ngIf="car?.carDetails?.discountPercentage > 0" class="card-text"><strong>Discount:</strong> {{ car?.carDetails?.discountPercentage }}%</p>
+          <p *ngIf="car?.carDetails?.discountPercentage > 0" class="card-text text-success fw-bold"><strong>Discounted Price per day:</strong> ₹{{ discountedPrice }}</p>
+
+          <!-- Date Range Selection -->
+          <label for="startDate" class="mt-3">Start Date:</label>
+          <input type="date" id="startDate" class="form-control mb-2" [(ngModel)]="startDate" (change)="calculateTotalPrice()">
+
+          <label for="endDate">End Date:</label>
+          <input type="date" id="endDate" class="form-control mb-2" [(ngModel)]="endDate" (change)="calculateTotalPrice()">
+
+          <!-- Total Price -->
+          <p class="mt-3 fs-5"><strong>Total Price:</strong> ₹{{ totalPrice }}</p>
+
+          <!-- Book Now Button -->
+          <button *ngIf="!car.isAvailable" class="btn btn-danger w-100" style="cursor:not-allowed;"><i class="bi bi-ban"></i> Out Of Stock</button>
+          <button *ngIf="!isAuthenticated && car.isAvailable" class="btn btn-outline-secondary w-100" routerLink="/login">Login to Book</button>
+          <button *ngIf="isAuthenticated && car.isAvailable" class="btn btn-success w-100" (click)="bookNow()" [disabled]="totalPrice === 0">Book Now</button>
+        </div>
+      </div>
+      
+  </div>
+</div>
+
+<app-car-reviews [carId]="car.id"></app-car-reviews>

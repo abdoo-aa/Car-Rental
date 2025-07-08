@@ -1,0 +1,230 @@
+<!-- Message Box (Visible when there is a message) -->
+<div *ngIf="message" [ngClass]="{
+    'alert-success': messageType === 'success',
+    'alert-danger': messageType === 'error',
+    'alert-warning': messageType === 'warning'
+  }" class="alert text-center">
+  {{ message }}
+</div>
+
+<div class="container mt-4">
+  <h2 class="fw-bold text-black-emphasis"><i class="bi bi-bar-chart-line"></i> Dashboard</h2>
+
+  <!-- Summary Cards for admin -->
+  <div class="row" *ngIf="isAdmin">
+    <div class="col-md-3 mb-1">
+      <div class="card summary-card">
+        <div class="card-body">
+          <h5>Total Bookings</h5>
+          <h3>{{ totalBookings }}</h3>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 mb-1">
+      <div class="card summary-card">
+        <div class="card-body">
+          <h5>Approved Bookings</h5>
+          <h3>{{ activeRentals }}</h3>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 mb-1" >
+      <div class="card summary-card">
+        <div class="card-body">
+          <h5>Pending Bookings</h5>
+          <h3>{{ totalPending }}</h3>
+        </div>
+      </div>
+    </div>
+
+    <!-- Earnings Summary (Visible to Admin only) -->
+    <div class="col-md-3 mb-1">
+      <div class="card summary-card admin-only">
+        <div class="card-body">
+          <h5>Total Earnings</h5>
+          <h3>₹{{ totalEarnings }}</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Summary Cards for User -->
+  <div class="row" *ngIf="!isAdmin">
+    <div class="col-md-6 mb-1">
+      <div class="card summary-card">
+        <div class="card-body">
+          <h5>Total Bookings</h5>
+          <h3>{{totalUserBooking}}</h3>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6 mb-1">
+      <div class="card summary-card">
+        <div class="card-body">
+          <h5>Cancelled Bookings</h5>
+          <h3>{{ cancelledbooking }}</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bookings Table -->
+  <!-- Bookings Table -->
+  <div class="card mt-4">
+    <div class="card-body">
+      <h5>{{ isAdmin ? 'All Bookings' : 'Your Bookings' }}</h5>
+
+      <!-- Sorting & Filters -->
+      <div class="filters mb-3 w-100">
+        <select [(ngModel)]="filterStatus" class="form-control w-25 d-inline-block" (change)="applyFilters()">
+          <option value="">All</option>
+          <option value="Pending">Pending</option>
+          <option value="Approved">Approved</option>
+          <option value="Rejected">Rejected</option>
+          <option value="Completed">Completed</option>
+          <option value="Canceled">Canceled</option>
+        </select>
+      </div>
+
+      <!-- ✅ Responsive Table Container -->
+      <div class="table-responsive">
+        <table class="table table-striped text-center table-bordered align-middle">
+          <thead class="table-dark">
+            <tr>
+              <th>Car</th>
+              <th>Booking Date</th>
+              <th>Status</th>
+              <th *ngIf="isAdmin">UserID</th>
+              <th *ngIf="isAdmin">UserName</th>
+              <th>Journey Starts On</th>
+              <th>Journey Ends On</th>
+              <th>Price</th>
+              <th *ngIf="isAdmin">Action</th>
+              <th *ngIf="!isAdmin">Action</th>
+              <th *ngIf="!isAdmin">Complete Ride</th>
+              <th *ngIf="!isAdmin">Review</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let booking of filteredBookings | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage }">
+              <td class="fw-bolder">{{ booking.carName }}</td>
+              <td>{{ booking.bookingDate | date: 'dd/MM/yyyy' }}</td>
+              <td>
+                <span class="badge" [ngClass]="getStatusClass(booking.status)">
+                  {{ booking.status }}
+                </span>
+              </td>
+              <td *ngIf="isAdmin">{{booking.userId}}</td>
+              <td *ngIf="isAdmin">{{booking.displayname}}</td>
+              <td>{{booking.startDate | date: 'dd/MM/yyyy'}}</td>
+              <td>{{booking.endDate | date: 'dd/MM/yyyy'}}</td>
+              <td>₹{{ booking.price }}</td>
+
+              <!-- Admin Actions -->
+              <td *ngIf="isAdmin">
+                <button *ngIf="booking.status === 'Pending'" class="btn btn-success btn-sm m-1"
+                  (click)="approveBooking(booking.id)">
+                  Approve
+                </button>
+                <button *ngIf="booking.status === 'Pending'" class="btn btn-danger btn-sm m-1"
+                  (click)="rejectBooking(booking.id)">
+                  Reject
+                </button>
+                <p *ngIf="booking.status === 'Approved'" class="text-success fw-bolder">Approved on  {{booking.approvedAt | date: 'dd/MM/yyyy HH:mm:ss'}}</p>
+                <p *ngIf="booking.status === 'Canceled'" class="text-danger-emphasis">{{booking.displayname}} Cancelled Booking!! Amount Refunded</p>
+                <p *ngIf="booking.status === 'Rejected'" class="text-primary-emphasis">Admin Rejected!! Booking Amount Refunded</p>
+                <p *ngIf="booking.status === 'Completed'" class="text-danger">{{booking.displayname}} Returned car Successfully</p>
+              </td>
+
+              <!-- User Cancel Button -->
+              <td *ngIf="!isAdmin && booking.status === 'Pending'">
+                <button class="btn btn-warning btn-sm" (click)="cancelBooking(booking.id)">
+                  Cancel
+                </button>
+              </td>
+              <td *ngIf="!isAdmin && booking.status === 'Canceled'">
+                <p class="text-primary-emphasis">
+                  Cancelled Booking Successfully!! Amount Refunded
+                </p>
+              </td>
+              <td *ngIf="!isAdmin && booking.status === 'Rejected'">
+                <p class="text-danger-emphasis">
+                  Sorry, Admin Rejected Booking!! Amount Refunded
+                </p>
+              </td>
+              <td *ngIf="!isAdmin && booking.status === 'Approved'">
+                <p class="text-success fw-bolder fs-6">
+                  Approved on {{booking.approvedAt | date: 'dd/MM/yyyy HH:mm:ss'}} Delivery soon!
+                </p>
+              </td>
+              <td *ngIf="!isAdmin && booking.status === 'Completed'">
+                <p class="text-success-emphasis">
+                  Returned Car Successfully!! Hope you enjoy the ride
+                </p>
+              </td>
+              <td *ngIf="!isAdmin">
+                <p class="text-black-50" *ngIf="booking.status !== 'Approved' ">Not Avaliable</p>
+                <button class="btn btn-dark btn-sm" *ngIf="booking.status === 'Approved'" (click)="returnCar(booking.id)">Return</button>
+              </td>
+              <td *ngIf="!isAdmin && booking.status !== 'Completed'" class="text-muted">No Reviews</td>
+              <!-- ✅ Review Buttons (User Only, Completed Bookings) -->
+              <td *ngIf="!isAdmin && booking.status === 'Completed'">
+                <div>
+                  <button *ngIf="!booking.review" class="btn btn-primary btn-sm" (click)="selectBookingForReview(booking.id)">
+                    <i class="bi bi-pen"></i>
+                  </button>
+
+                  <button *ngIf="booking.review" class="btn btn-success btn-sm m-1" (click)="editReview(booking.id)">
+                    <i class="bi bi-eye"></i>
+                  </button>
+
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ✅ Review Form Modal (Add & Edit) -->
+  <div *ngIf="showReviewForm" class="modal-overlay">
+    <div *ngIf="!editingReview" class="modal-content">
+      <h4>Add a Review</h4>
+      <label>Rating:</label>
+      <select [(ngModel)]="rating" class="form-control mb-2">
+        <option value="0">Select Rating</option>
+        <option *ngFor="let star of [1, 2, 3, 4, 5]" [value]="star">{{ star }} ⭐</option>
+      </select>
+
+      <label>Review Text:</label>
+      <textarea [(ngModel)]="review" class="form-control mb-3" rows="3"></textarea>
+
+      <div class="text-end">
+        <button *ngIf="!editingReview"  class="btn btn-success btn-sm" (click)="submitReview()">✅ Save</button>
+        <button class="btn btn-secondary btn-sm ms-2" (click)="closeReviewForm()">❌ Cancel</button>
+      </div>
+    </div>
+
+    <div *ngIf="editingReview" class="modal-content">
+      <label class="fw-bold">Rating:</label>
+      <div class="rating-stars">
+        <span *ngFor="let star of [1, 2, 3, 4, 5]" [ngClass]="{'text-warning': star <= rating, 'text-secondary': star > rating}">
+          ★
+        </span>
+      </div>
+
+      <label class="fw-bold mt-3">Review Text:</label>
+      <p class="review-text border rounded p-2 bg-light">{{ review || 'No review provided.' }}</p>
+
+      <div class="text-end">
+        <button class="btn btn-secondary btn-sm ms-2" (click)="closeReviewForm()">❌ Close</button>
+      </div>
+    </div>
+    
+  </div>
+  <!-- Pagination Controls -->
+  <pagination-controls (pageChange)="currentPage = $event"></pagination-controls>
+</div>

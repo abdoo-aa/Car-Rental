@@ -1,0 +1,81 @@
+<!-- Global Loader -->
+<div class="global-loader" *ngIf="isLoading">
+  <div class="spinner-border text-success" role="status">
+  </div>
+  <div class="spinner-border text-warning" role="status">
+  </div>
+  <div class="spinner-border text-danger" role="status">
+  </div>
+</div>
+<app-sidebar *ngIf="showLayout"></app-sidebar>
+<div class="main-content">
+  <router-outlet></router-outlet>
+</div>
+
+<!--  Global Footer -->
+<footer class="footer" *ngIf="showLayout">
+  <div class="footer-content">
+    <!--  Left Section: Logo & Name -->
+    <div class="footer-logo">
+      <a routerLink="/cars">
+        <img src="assets/logo.png" alt="GlideDrive Logo" style="border-radius: 60%;width: 77%;margin-bottom: 22px;margin-top: 5px;" />
+      </a>
+    </div>
+
+    <!--  Middle Section: Quick Links -->
+    <div class="footer-links">
+      <a href="#" (click)="openModal('terms', $event)">Terms</a>
+      <a href="#" (click)="openModal('privacy', $event)">Privacy Policy</a>
+    </div>
+
+    <!--  Right Section: Social Media -->
+    <div class="footer-social">
+      <a href="https://github.com" target="_blank"><i class="bi bi-github"></i></a>
+      <a href="https://linkedin.com" target="_blank"><i class="bi bi-linkedin"></i></a>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; 2025 GlideDrive<br> by Md Arham Kalam Ansari. All Rights Reserved.</p>
+  </div>
+</footer>
+<!-- Privacy Policy Modal -->
+<div class="modal fade" id="privacyPolicyModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Privacy Policy</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Your privacy is important to us. We do not share your personal information with third parties.</p>
+        <p>We use cookies and other tracking technologies to improve your experience on our website.</p>
+        <p>&copy; 2025 GlideDrive by Md Arham Kalam Ansari. All Rights Reserved.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Terms & Conditions Modal -->
+<div class="modal fade" id="termsModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Terms & Conditions</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>By using GlideDrive, you agree to our terms and conditions.</p>
+        <p>All rentals are subject to availability and compliance with our policies.</p>
+        <p>Any damage to the vehicle will be the renter's responsibility.</p>
+        <p>&copy; 2025 GlideDrive by Md Arham Kalam Ansari. All Rights Reserved.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

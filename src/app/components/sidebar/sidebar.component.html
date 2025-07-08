@@ -1,0 +1,19 @@
+<div class="sidebar" [class.open]="isSidebarOpen">
+  <button class="toggle-btn" (click)="toggleSidebar()">
+    <i class="bi" [ngClass]="{'bi-list': !isSidebarOpen, 'bi-x': isSidebarOpen}"></i>
+  </button>
+
+  <ul>
+    <li><a routerLink="/home"><i class="bi bi-house-door"></i> Home</a></li> 
+    <li><a routerLink="/cars"><i class="bi bi-car-front"></i> Vehicles </a> <i class="bi bi-bell badge bg-primary"> New</i></li> <!--  Visible to Everyone -->
+
+    <li *ngIf="isAuthenticated"><a routerLink="/dashboard"><i class="bi bi-bar-chart"></i> Dashboard</a></li> <!--  Only if logged in -->
+    <li *ngIf="isAuthenticated"><a routerLink="/profile"><i class="bi bi-person"></i> Profile</a></li> <!--  Only if logged in -->
+    <li *ngIf="isAdmin"><a routerLink="/managecar"><i class="bi bi-sliders"></i> Manage Vehicles</a></li>
+    <li *ngIf="isAdmin"><a routerLink="/manageuser"><i class="bi bi-people"></i> Manage Users</a></li> <!--  Only for Admin -->
+
+    <li *ngIf="!isAuthenticated"><a routerLink="/login"><i class="bi bi-person"></i> Login</a></li>
+
+    <li *ngIf="isAuthenticated" (click)="logout()"><i class="bi bi-box-arrow-right"></i> Logout</li> <!--  Logout only when logged in -->
+  </ul>
+</div>

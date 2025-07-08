@@ -1,0 +1,51 @@
+.sidebar {
+    position: fixed;
+    left: -250px;
+    top: 0;
+    width: 250px;
+    height: 100%;
+    background: rgba(52, 58, 64, 0.85); // Lower opacity
+    color: white;
+    transition: left 0.3s ease-in-out;
+    z-index: 1050;
+  
+    &.open {
+      left: 0;
+    }
+  
+    .toggle-btn {
+      position: fixed;
+      top: 10px;
+      left: 10px; // Move inside the sidebar
+      background: rgba(52, 58, 64, 0.85);
+      color: white;
+      border: none;
+      font-size: 24px;
+      padding: 5px 10px;
+      cursor: pointer;
+      z-index: 1100;
+      border-radius: 50%;
+    }
+  
+    ul {
+      list-style: none;
+      padding: 60px 20px 20px; // Push content down to make space for toggle button
+      margin: 0;
+  
+      li {
+        padding: 15px;
+        cursor: pointer;
+        transition: background 0.3s;
+  
+        &:hover {
+          background: rgba(73, 80, 87, 0.85);
+        }
+  
+        a {
+          color: white;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+  

@@ -1,0 +1,27 @@
+<div class="chatbot-wrapper" [class.open]="isOpen">
+    <!-- Floating Button -->
+    <div class="chatbot-btn" (click)="toggleChat()">
+      <i class="bi bi-chat-dots-fill"></i> ArkaBot
+    </div>
+  
+    <!-- Chat Window -->
+    <div class="chat-window card shadow-lg" *ngIf="isOpen">
+      <div class="chat-header">
+        <h5><i class="bi bi-robot"></i> ArkaBot</h5>
+        <button class="close-btn" (click)="toggleChat()">&times;</button>
+      </div>
+  
+      <div class="chat-body" #chatBody>
+        <div *ngFor="let msg of messages" [ngClass]="msg.sender">
+          <p>{{ msg.text }}</p>
+        </div>
+      </div>
+  
+      <div class="chat-footer">
+        <input type="text" [(ngModel)]="userInput" placeholder="Type your question..." 
+               (keyup.enter)="sendMessage()">
+        <button (click)="sendMessage()"><i class="bi bi-send"></i></button>
+      </div>
+    </div>
+  </div>
+  

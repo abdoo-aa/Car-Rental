@@ -1,0 +1,113 @@
+<!--
+<div *ngIf="message" class="alert" [ngClass]="{'alert-success': messageType === 'success', 'alert-danger': messageType === 'error'}">
+  {{ message }}
+</div>
+
+<div class="container mt-4">
+  <h1 class="text-center mb-4 fw-bolder">{{ isEditMode ? 'Edit Car' : 'Add Car' }}</h1>
+
+  <div class="card shadow p-4">
+    <div class="row">
+      
+      
+      <div class="col-md-5 d-flex flex-column align-items-center">
+        <label for="fileInput" class="image-upload-label">
+          <i class="bi bi-camera-fill upload-icon"></i>
+          <span>Upload Car Image</span>
+        </label>
+        <input id="fileInput" type="file" (change)="onFileSelected($event)" class="d-none">
+        
+        
+        <div class="preview-container mt-3">
+          <img *ngIf="previewImage" [src]="previewImage" class="preview-image" alt="Car Image">
+          <i *ngIf="!previewImage" class="bi bi-image text-muted preview-placeholder"></i>
+        </div>
+      </div>
+
+      
+      <div class="col-md-7 fw-bolder">
+        <form [formGroup]="carForm">
+          <div class="mb-3">
+            <label class="form-label">Make</label>
+            <input type="text" formControlName="make" class="form-control" placeholder="Enter Car Make">
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Model</label>
+            <input type="text" formControlName="model" class="form-control" placeholder="Enter Car Model">
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Year</label>
+            <input type="number" formControlName="year" class="form-control" placeholder="Enter Year">
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Color</label>
+            <input type="text" formControlName="color" class="form-control" placeholder="Enter Color">
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Price (₹/day)</label>
+            <input type="number" formControlName="rentalPricePerDay" class="form-control" placeholder="Enter Rental Price">
+          </div>
+
+          <button type="button" (click)="saveCar()" class="btn btn-success w-100">
+            <i class="bi bi-save"></i> Save Car
+          </button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+-->
+
+<div *ngIf="message" class="alert" [ngClass]="{'alert-success': messageType === 'success', 'alert-danger': messageType === 'error'}">
+  {{ message }}
+</div>
+
+<div class="container mt-4">
+  <h1 class="text-center mb-4 fw-bolder">{{ isEditMode ? 'Edit Car' : 'Add Car' }}</h1>
+
+  <div class="card shadow p-4">
+    <div class="row">
+      <!-- Left Section: Image Upload -->
+      <div class="col-md-5 d-flex flex-column align-items-center">
+        <label for="fileInput" class="image-upload-label">
+          <i class="bi bi-camera-fill upload-icon"></i>
+          <span>Upload Car Image</span>
+        </label>
+        <input id="fileInput" type="file" (change)="onFileSelected($event)" class="d-none">
+        <div class="preview-container mt-3">
+          <img *ngIf="previewImage" [src]="previewImage" class="preview-image" alt="Car Image">
+          <i *ngIf="!previewImage" class="bi bi-image text-muted preview-placeholder"></i>
+        </div>
+      </div>
+
+      <!-- Right Section: Car Form -->
+      <div class="col-md-7 fw-bolder">
+        <form [formGroup]="carForm">
+          <h5 class="text-primary">Car Information</h5>
+          <div class="mb-3"><label>Make</label><input type="text" formControlName="make" class="form-control"></div>
+          <div class="mb-3"><label>Model</label><input type="text" formControlName="model" class="form-control"></div>
+          <div class="mb-3"><label>Year</label><input type="number" formControlName="year" class="form-control"></div>
+          <div class="mb-3"><label>Color</label><input type="text" formControlName="color" class="form-control"></div>
+          <div class="mb-3"><label>Price (₹/day)</label><input type="number" formControlName="rentalPricePerDay" class="form-control"></div>
+
+          <h5 class="text-primary mt-3">Car Details</h5>
+          <div class="mb-3"><label>Category</label><input type="text" formControlName="category" class="form-control"></div>
+          <div class="mb-3"><label>Mileage (km/l)</label><input type="number" formControlName="mileage" class="form-control"></div>
+          <div class="mb-3"><label>Transmission</label><input type="text" formControlName="transmission" class="form-control"></div>
+          <div class="mb-3"><label>Fuel Type</label><input type="text" formControlName="fuelType" class="form-control"></div>
+          <div class="mb-3"><label>Seating Capacity</label><input type="number" formControlName="seatingCapacity" class="form-control"></div>
+          <div class="mb-3"><label>Discount (%)</label><input type="number" formControlName="discountPercentage" class="form-control"></div>
+
+          <button type="button" (click)="saveCar()" class="btn btn-success w-100 mt-3">
+            <i class="bi bi-save"></i> {{ isEditMode ? 'Update Car' : 'Add Car' }}
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

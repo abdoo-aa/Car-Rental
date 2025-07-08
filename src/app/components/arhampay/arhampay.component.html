@@ -1,0 +1,25 @@
+<div class="payment-container" *ngIf="amount <= 0">
+  <h1>
+    Opps!! Please Select Car to Pay
+  </h1>
+</div>
+<div class="payment-container" *ngIf="amount > 0">
+    <div class="payment-card">
+      <div *ngIf="paymentSuccess" class="success-message">
+        <i class="bi bi-check-circle-fill text-success"></i>
+        <h4>Thank you for the payment!</h4>
+        <p>Your car will arrive soon.</p>
+        <p>Redirecting automatically in <strong>{{ count }}</strong> seconds...</p>
+      </div>
+      <h2>ArhamPay - Secure Payment</h2>
+      <p *ngIf="!paymentSuccess" class="amount-text">You are about to pay <span>₹{{ amount }}</span></p>
+  
+      <button *ngIf="!paymentSuccess" class="btn btn-primary pay-btn" (click)="processPayment()" [disabled]="isLoading$ | async">
+        <span *ngIf="!(isLoading$ | async)">Confirm Payment</span>
+        <div *ngIf="isLoading$ | async" class="spinner-border text-light spinner-sm"></div>
+      </button>
+  
+      <p *ngIf="isLoading$ | async">Processing payment, please wait...</p>
+    </div>
+  </div>
+  

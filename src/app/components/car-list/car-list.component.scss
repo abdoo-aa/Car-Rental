@@ -1,0 +1,168 @@
+/* 🔹 Ensures proper container spacing */
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+}
+
+/* 🔹 Page Heading Styling */
+h2 {
+  font-weight: bold;
+  color: #007bff;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* 🔹 Search & Filter Cards */
+.search-card, 
+.filter-card {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 15px;
+  background-color: white;
+}
+
+/* 🔹 Filter Button */
+.btn-primary {
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* 🔹 Filter Section Styling */
+.filter-card {
+  background-color: #f8f9fa;
+  margin-bottom: 15px;
+
+  label {
+    font-weight: bold;
+    margin-top: 10px;
+  }
+
+  .form-control {
+    border-radius: 5px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  }
+}
+
+/* 🔹 Price Range Fields */
+.price-range {
+  display: flex;
+  gap: 10px;
+}
+
+/* 🔹 Responsive Layout for Filters */
+
+/* 🔹 Car Listing Grid */
+.car-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  justify-content: center;
+}
+
+
+/* 🔹 Car Card Styling */
+.car-card {
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  background: white;
+  border: 1px solid #ddd;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 12px 25px rgba(0, 0, 0, 0.2);
+  }
+}
+
+/* 🔹 Image Styling */
+.image-container {
+  width: 100%;
+  height: 180px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f8f9fa;
+}
+
+.car-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease-in-out;
+
+  /* 🔹 Image Zoom Effect */
+  .car-card:hover & {
+    transform: scale(1.1);
+  }
+}
+
+/* 🔹 Book Button */
+.book-btn {
+  width: 100%;
+  font-weight: bold;
+  transition: background 0.3s ease-in-out;
+  border: 2px solid #007bff;
+  color: #007bff;
+  padding: 10px;
+  border-radius: 5px;
+
+  &:hover {
+    background: #007bff;
+    color: white;
+  }
+}
+
+/* 🔹 Pagination */
+.pagination-container {
+  display: flex;
+  justify-content: center;
+}
+
+.pagination {
+  display: flex;
+  list-style: none;
+  padding: 0;
+}
+
+.pagination-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@media (max-width: 768px) {
+  .price-range {
+    flex-direction: column;
+  }
+
+  .filter-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .form-control {
+    width: 100%;
+  }
+}
+@media (max-width: 992px) {
+  .car-list {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+/*@media (max-width: 768px) {
+  .car-list {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}*/
