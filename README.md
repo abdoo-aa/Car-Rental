@@ -9,7 +9,7 @@ User Registration & Authentication: Secure sign-up and login using JWT tokens.
 
 Search & Filter Vehicles: Browse and filter available cars by brand, type, location, price, and date.
 
-Live Availability Check: Only cars available in the selected date range are shown.
+Live Availability Check: Only cars available are shown.
 
 Booking System: Users can book a car by choosing pickup and drop-off dates.
 
@@ -26,24 +26,18 @@ Booking Overview: View and manage all active, past, or cancelled bookings.
 
 User Monitoring: See active users and their booking history.
 
-Dashboard View: Visual overview of fleet status, revenue metrics, and booking trends.
+Dashboard View: Visual overview of revenue metrics, and booking trends.
 
 🧪 Tech Stack:
-Frontend: Angular 14+, Angular Material, Bootstrap
+Frontend: Angular, SCSS, Bootstrap
 
-Backend: ASP.NET Core Web API (.NET 6)
+Backend: ASP.NET Core Web API
 
 Database: Microsoft SQL Server with Entity Framework Core
 
 Authentication: JWT Token-based secure login system
 
 API Layer: RESTful services for all CRUD operations
-
-Architecture: Layered solution with proper separation of concerns (Controllers, Services, Repositories)
-
-Testing: Postman for API testing and unit test-ready services
-
-Deployment: Ready for cloud hosting (Azure, AWS, or on-prem)
 
 📦 Features in Progress / Future Enhancements:
 Email notifications on booking and cancellation
