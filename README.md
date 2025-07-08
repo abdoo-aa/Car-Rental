@@ -1,4 +1,4 @@
-# Car-Rental
+# Car-Rental-System
 #angular, #dotnet-core, #car-rental-app, #fullstack, #webapp, #vehicle-booking-system
 
 🚗 **Car Rental Management System – Full-Stack Web Application (Angular + .NET Core)**
