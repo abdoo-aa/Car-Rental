@@ -49,6 +49,10 @@ Role-based access with permission groups
 Real-time availability calendar
 
 Customer support ticketing module
+![Screenshot (43)](https://github.com/user-attachments/assets/7ee12a97-a372-44a3-8096-a9feafd50adf)
+![Screenshot (41)](https://github.com/user-attachments/assets/8c0baf28-b3d5-45e4-9f53-994683487409)
+![Screenshot (35)](https://github.com/user-attachments/assets/00f134d2-2b0e-4a39-b95a-0787b44193d4)
+
 
 
 **Anyone interested in this project can kindly connect with me at 📧 kalamarham@gmail.com.**
