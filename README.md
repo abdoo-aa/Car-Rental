@@ -1,4 +1,6 @@
 # Car-Rental
+#angular, #dotnet-core, #car-rental-app, #fullstack, #webapp, #vehicle-booking-system
+
 🚗 **Car Rental Management System – Full-Stack Web Application (Angular + .NET Core)**
 I developed a fully-featured Car Rental Web Application using Angular (frontend) and .NET Core Web API (backend) to manage the complete rental process for users and administrators. This project mimics real-world rental service platforms with clean UI, robust backend, and secure user management.
 
