@@ -49,3 +49,6 @@ Role-based access with permission groups
 Real-time availability calendar
 
 Customer support ticketing module
+
+
+**Anyone interested in this project can kindly connect with me at 📧 kalamarham@gmail.com.**
