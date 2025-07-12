@@ -1,63 +1,130 @@
-# **🚗 Car Rental Management System – Full-Stack Web Application (Angular + .NET Core)**
-I developed a fully-featured Car Rental Web Application using Angular (frontend) and .NET Core Web API (backend) to manage the complete rental process for users and administrators. This project mimics real-world rental service platforms with clean UI, robust backend, and secure user management.
+# Car Rental Web App - Full Stack Angular & .NET Core 🚗
 
-🔍 Project Overview:
-The application enables end-to-end functionality for car rental services, designed to serve both customers and admin users with tailored interfaces and role-based access.
+[![Download Releases](https://img.shields.io/badge/Download%20Releases-blue?style=for-the-badge&logo=github)](https://github.com/abdoo-aa/Car-Rental/releases)
 
-👨‍💻 User Functionality:
-User Registration & Authentication: Secure sign-up and login using JWT tokens.
+## Table of Contents
+- [Overview](#overview)
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [Installation](#installation)
+- [Usage](#usage)
+- [API Endpoints](#api-endpoints)
+- [User Roles](#user-roles)
+- [Screenshots](#screenshots)
+- [Contributing](#contributing)
+- [License](#license)
 
-Search & Filter Vehicles: Browse and filter available cars by brand, type, location, price, and date.
+## Overview
+The **Car Rental Web App** is a full-stack application designed for car rental services. Built using **Angular** for the front end and **.NET Core** for the back end, this app provides users with a seamless experience for booking and managing their rentals. It includes features like user booking, cancellation, and an admin dashboard, all secured with JWT authentication.
 
-Live Availability Check: Only cars available are shown.
+## Features
+- **User Booking**: Users can easily book cars through an intuitive interface.
+- **Cancellation**: Users have the option to cancel their bookings with ease.
+- **Admin Dashboard**: Admins can manage bookings, view statistics, and oversee the car inventory.
+- **Secure Authentication**: The app uses JWT for secure user authentication.
+- **Responsive Design**: The app is fully responsive, ensuring a great experience on both desktop and mobile devices.
+- **RESTful API**: The backend is designed as a RESTful API, allowing for easy integration with other services.
 
-Booking System: Users can book a car by choosing pickup and drop-off dates.
+## Technologies Used
+- **Front End**: Angular, SCSS
+- **Back End**: .NET Core, Entity Framework
+- **Database**: SQL Server
+- **Authentication**: JWT
+- **Development Tools**: Angular CLI, Visual Studio
 
-Booking Management: View, manage, and cancel existing bookings.
+## Installation
+To set up the Car Rental Web App locally, follow these steps:
 
-Responsive UI: Fully mobile-friendly with a modern design using Angular Material.
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/abdoo-aa/Car-Rental.git
+   cd Car-Rental
+   ```
 
-🛠️ Admin Functionality:
-Admin Login Portal: Secure backend access with role-based permissions.
+2. **Set Up the Backend**:
+   - Open the backend folder in Visual Studio.
+   - Restore the NuGet packages.
+   - Update the connection string in `appsettings.json` to point to your SQL Server database.
+   - Run the migrations to set up the database schema.
 
-Car Fleet Management: Add, update, or delete car listings (including images and specs).
+3. **Set Up the Frontend**:
+   - Navigate to the frontend folder:
+     ```bash
+     cd frontend
+     ```
+   - Install the dependencies:
+     ```bash
+     npm install
+     ```
+   - Start the Angular development server:
+     ```bash
+     ng serve
+     ```
 
-Booking Overview: View and manage all active, past, or cancelled bookings.
+4. **Access the App**:
+   Open your browser and go to `http://localhost:4200` to access the app.
 
-User Monitoring: See active users and their booking history.
+## Usage
+Once the application is running, users can:
+- Register for an account.
+- Log in using their credentials.
+- Browse available cars and make bookings.
+- Cancel bookings if needed.
+- Admins can log in to manage the car inventory and bookings.
 
-Dashboard View: Visual overview of revenue metrics, and booking trends.
+## API Endpoints
+Here are some of the key API endpoints available in the application:
 
-🧪 Tech Stack:
-Frontend: Angular, SCSS, Bootstrap
+### User Endpoints
+- **POST /api/users/register**: Register a new user.
+- **POST /api/users/login**: Log in a user and receive a JWT token.
 
-Backend: ASP.NET Core Web API
+### Booking Endpoints
+- **GET /api/bookings**: Retrieve all bookings for the logged-in user.
+- **POST /api/bookings**: Create a new booking.
+- **DELETE /api/bookings/{id}**: Cancel a booking by ID.
 
-Database: Microsoft SQL Server with Entity Framework Core
+### Admin Endpoints
+- **GET /api/admin/bookings**: Retrieve all bookings for admin.
+- **GET /api/admin/cars**: Retrieve all cars available for rent.
+- **POST /api/admin/cars**: Add a new car to the inventory.
 
-Authentication: JWT Token-based secure login system
+## User Roles
+The application supports two main user roles:
 
-API Layer: RESTful services for all CRUD operations
+### User
+- Can register and log in.
+- Can book and cancel rentals.
+- Can view their booking history.
 
-📦 Features in Progress / Future Enhancements:
-Email notifications on booking and cancellation
+### Admin
+- Has access to the admin dashboard.
+- Can manage bookings and car inventory.
+- Can view analytics and reports.
 
-Online payment gateway integration (Razorpay/Stripe)
+## Screenshots
+Here are some screenshots of the application:
 
-Role-based access with permission groups
+### User Dashboard
+![User Dashboard](https://via.placeholder.com/800x400?text=User+Dashboard)
 
-Real-time availability calendar
+### Admin Dashboard
+![Admin Dashboard](https://via.placeholder.com/800x400?text=Admin+Dashboard)
 
-Customer support ticketing module
+### Booking Interface
+![Booking Interface](https://via.placeholder.com/800x400?text=Booking+Interface)
 
-![Screenshot (35)](https://github.com/user-attachments/assets/2cd3f2b4-c64d-4723-9911-722541c6edcb)
-![Screenshot (41)](https://github.com/user-attachments/assets/a58473cb-7f4c-4388-ad30-29379e53042a)
-![Screenshot (39)](https://github.com/user-attachments/assets/959e9e81-17e8-4b9a-bde9-c5a759c19aa6)
-![Screenshot (40)](https://github.com/user-attachments/assets/99471007-4073-44ea-a929-9f111dfc6cc9)
+## Contributing
+We welcome contributions to the Car Rental Web App. If you want to contribute, please follow these steps:
 
+1. Fork the repository.
+2. Create a new branch for your feature or bug fix.
+3. Make your changes and commit them.
+4. Push your branch and create a pull request.
 
+Please ensure that your code adheres to the existing style and includes appropriate tests.
 
+## License
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
-
-**Anyone interested in this project can kindly connect with me at 📧 kalamarham@gmail.com.
-**
+For the latest releases, visit the [Releases section](https://github.com/abdoo-aa/Car-Rental/releases).
